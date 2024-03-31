@@ -32,13 +32,15 @@ ruleTester.run("path-checker", rule, {
 
   invalid: [
     {
-      filename: "/Users/macos/Documents/projects/me/src/entities/Article",
+      filename: "/Users/macos/Documents/projects/me/src/entities/Article/ui/Article.tsx",
       code: "import { Article } from 'entities/Article/model/slice';",
+      output: "import { Article } from '../model/slice';",
       errors: [{ message: "Within one slice, all paths must be relative"}],
     },
     {
-      filename: "/Users/macos/Documents/projects/me/src/entities/Article",
+      filename: "/Users/macos/Documents/projects/me/src/entities/Article/ui/Article.tsx",
       code: "import { Article } from '@/entities/Article/model/slice';",
+      output: "import { Article } from '../model/slice';",
       errors: [{ message: "Within one slice, all paths must be relative"}],
       options: [
         {

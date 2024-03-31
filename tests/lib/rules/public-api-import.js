@@ -73,10 +73,12 @@ ruleTester.run("public-api-import", rule, {
     invalid: [
         {
             code: "import { Article } from 'entities/Article/model/slice';",
+            output: "import { Article } from 'entities/Article';",
             errors: [{message: "Absolute import is allowed only from Public Api (index.ts)"}],
         },
         {
             code: "import { Article } from '@/entities/Article/model/slice';",
+            output: "import { Article } from '@/entities/Article';",
             errors: [{message: "Absolute import is allowed only from Public Api (index.ts)"}],
             options: aliasOptions,
         },
@@ -97,7 +99,8 @@ ruleTester.run("public-api-import", rule, {
         },
         {
             filename: "/Users/macos/Documents/projects/me/src/pages/Article/model/StoreDecorator.tsx",
-            code: "import { Article } from '@/entities/Comment/testing/file.tsx';",
+            code: "import { Article } from '@/entities/Comment/testing/file';",
+            output: "import { Article } from '@/entities/Comment/testing';",
             errors: [{message: "Absolute import is allowed only from Public Api (index.ts)"}],
             options: [
                 {
